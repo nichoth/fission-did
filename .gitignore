@@ -180,3 +180,4 @@ node_modules
 
 
 bundle.js
+public/bundle.js.map

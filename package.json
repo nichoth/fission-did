@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "main": "example.js",
   "scripts": {
-    "build-js": "rollup --config",
+    "roll": "rollup --config",
     "serve": "ecstatic public",
     "start": "budo example.js:bundle.js --dir=public/ --live --pushstate --open -- -p esmify -dv",
     "build-js-br": "browserify -p esmify -t [ babelify --global --presets [ @babel/preset-env ] --plugins [ @babel/plugin-proposal-export-namespace-from ] ] --debug example.js > public/bundle.js",
