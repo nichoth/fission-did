@@ -6,7 +6,7 @@ What is UCAN?
 
 see
 * [blog](https://fission.codes/blog/auth-without-backend/)
-* https://talk.fission.codes/t/user-controlled-authorization-networks-ucan-resources/1122
+* [https://talk.fission.codes/](https://talk.fission.codes/t/user-controlled-authorization-networks-ucan-resources/1122)
 * [the fission guide](https://guide.fission.codes/ucan)
 * [whitepaper](https://whitepaper.fission.codes/authorization/id-overview)
 
