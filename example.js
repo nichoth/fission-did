@@ -1,4 +1,3 @@
-// import * as wn from "webnative"
 // Browser/UMD build
 const wn = window.webnative
 // import * as wn from 'webnative'

@@ -9,6 +9,10 @@ see
 * [https://talk.fission.codes/](https://talk.fission.codes/t/user-controlled-authorization-networks-ucan-resources/1122)
 * [the fission guide](https://guide.fission.codes/ucan)
 * [whitepaper](https://whitepaper.fission.codes/authorization/id-overview)
+* [API docs](https://webnative.fission.app/)
+* [w3c did:key method](https://w3c-ccg.github.io/did-method-key/)
+* [w3c did docs](https://www.w3.org/TR/did-core/)
+* [fission webnative repo](https://github.com/fission-suite/webnative)
 
 > Everything that a users is allowed to do is captured directly in a key or token, and can be sent to anyone that knows how to interpret this format.
 
