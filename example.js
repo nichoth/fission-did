@@ -12,6 +12,14 @@ wn.did.ucan()
         console.log('our did', ourDID)
 
         /**
+         * This can be another UCAN which has a bigger, or equal,
+         * set of permissions than the UCAN we're building later.
+         */
+        const possibleProof = null // or, other UCAN.
+
+        const otherDID = "did:key:EXAMPLE"
+
+        /**
          * The UCAN, encoded as a string.
          */
         wn.ucan.build({
@@ -24,11 +32,3 @@ wn.did.ucan()
                 console.log('got ucan', ucan)
             })
     })
-
-const otherDID = "did:key:EXAMPLE"
-
-/**
- * This can be another UCAN which has a bigger, or equal,
- * set of permissions than the UCAN we're building later.
- */
-const possibleProof = null // or, other UCAN.
