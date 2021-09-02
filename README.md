@@ -12,6 +12,10 @@ see
 
 > Everything that a users is allowed to do is captured directly in a key or token, and can be sent to anyone that knows how to interpret this format.
 
+## start
+```
+$ npm start
+```
 
 ## rollup
 
