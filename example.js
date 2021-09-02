@@ -1,4 +1,6 @@
-import * as wn from "webnative"
+// import * as wn from "webnative"
+// Browser/UMD build
+const wn = window.webnative
 
 console.log('wn', wn)
 

@@ -6,7 +6,8 @@
   "scripts": {
     "build-js": "rollup --config",
     "serve": "ecstatic public",
-    "build-js-old": "browserify -p esmify -t [ babelify --global  --presets [ @babel/preset-env ] --plugins [ @babel/plugin-proposal-export-namespace-from ] ] --debug example.js > public/bundle.js",
+    "start": "budo example.js:bundle.js --dir=public/ --live --pushstate --open -- -p esmify -dv",
+    "build-js-br": "browserify -p esmify -t [ babelify --global --presets [ @babel/preset-env ] --plugins [ @babel/plugin-proposal-export-namespace-from ] ] --debug example.js > public/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "@rollup/plugin-node-resolve": "^13.0.4",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
+    "budo": "^11.6.4",
     "ecstatic": "^4.1.4",
     "esmify": "^2.1.1",
     "rollup": "^2.56.3"
