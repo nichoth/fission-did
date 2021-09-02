@@ -1,0 +1,27 @@
+{
+  "name": "fission-did",
+  "description": "What is UCAN?",
+  "version": "0.0.0",
+  "main": "example.js",
+  "scripts": {
+    "build-js": "browserify -p esmify --debug example.js > public/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "webnative": "^0.27.0"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "esmify": "^2.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichoth/fission-did.git"
+  },
+  "author": "Nick Thomas <nichoth@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nichoth/fission-did/issues"
+  },
+  "homepage": "https://github.com/nichoth/fission-did#readme"
+}
