@@ -5,7 +5,6 @@
   "main": "example.js",
   "scripts": {
     "build-js": "rollup --config",
-    "//build-js": "rollup --name \"fissionDid\"",
     "build-js-old": "browserify -p esmify -t [ babelify --global  --presets [ @babel/preset-env ] --plugins [ @babel/plugin-proposal-export-namespace-from ] ] --debug example.js > public/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
