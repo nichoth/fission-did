@@ -4,6 +4,13 @@ const wn = window.webnative
 
 console.log('wn', wn)
 
+wn.did.ucan()
+    .then(async ourDID => {
+        console.log('our did again', ourDID)
+        var pk = wn.did.didToPublicKey(ourDID)
+        console.log('pk again', pk)
+    })
+
 // DIDs
 // const ourDID = await wn.did.ucan()
 wn.did.ucan()
