@@ -32,6 +32,8 @@ This will use budo/browserify to build a local JS file, and it links via `<scrip
 $ npm start
 ```
 
+Visit the web page on localhost, not the given IP address. It's necessary to use localhost for the webCrypto API.
+
 ## rollup
 
 ```
