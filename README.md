@@ -15,6 +15,14 @@ see
 * [fission webnative repo](https://github.com/fission-suite/webnative)
 * [Lightweight Credentials for Offers with UCAN](https://fission.codes/blog/lightweight-credentials-ucan/)
 * [UCAN (do) secure key management in the browser, with Ben Bollen](https://talk.fission.codes/t/ucan-do-secure-key-management-in-the-browser-with-ben-bollen/1214)
+* [AWAKE](https://whitepaper.fission.codes/accounts/login/awake)
+
+--------------------------------
+
+> What is the API for working with the private key (as opposed to the UCAN API)?
+There's the WebCrypto API (which is a standard browser API). We also have a wrapper for key management called keystore-idb.
+
+------------------------------------------
 
 > Everything that a users is allowed to do is captured directly in a key or token, and can be sent to anyone that knows how to interpret this format.
 
