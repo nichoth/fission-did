@@ -1,12 +1,5 @@
 # fission did
 
-## develop
-
-Start a development server, visit the page on localhost, not an IP address.
-```
-$ npm start
-```
-
 What is UCAN?
 
 'User Controlled Authorization Networks'
