@@ -2,6 +2,8 @@
 const wn = window.webnative
 // import * as wn from 'webnative'
 
+const UCANS_STORAGE_KEY = 'webnative.auth_ucans'
+
 console.log('wn', wn)
 
 wn.did.ucan()
@@ -19,6 +21,22 @@ wn.did.ucan()
 
         var pk = wn.did.didToPublicKey(ourDID)
         console.log('pk', pk)
+        // console.log('keystore', wn.keystore)
+
+        wn.keystore.create()
+            .then(async ks => {
+                // console.log('ks', ks)
+
+                const writeKey1 = await ks.publicWriteKey()
+                console.log('equal?', pk.publicKey === writeKey1)
+
+                var sig = await ks.sign('my message')
+                // console.log('the signature', sig)
+
+                var isValid = await ks.verify('my message', sig, writeKey1)
+                console.log('is valid?', isValid)
+            })
+
 
         /**
          * This can be another UCAN which has a bigger, or equal,
@@ -31,11 +49,7 @@ wn.did.ucan()
         console.log('other', otherDID)
 
 
-
-
         // https://webnative.fission.app/modules/ucan.html#sign
-
-
 
 
         /**
