@@ -24,6 +24,9 @@ This UCAN/DID is your identity. It is created with the webCrypto API, which
 means that the public key is visible to us, but we have to way to access the 
 related private key. You can sign and verify messages by using an API.
 
+The DID is an easy to serialize string so it can be moved easily to 
+different backends.
+
 ## sign messages with the DID
 To sign or verify messages, you can use the keystore API. This uses the same
 key pair that was created for the UCAN above. It is the same keypair used
