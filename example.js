@@ -1,40 +1,45 @@
-// Browser/UMD build
 const wn = window.webnative
 // import * as wn from 'webnative'
 
-const UCANS_STORAGE_KEY = 'webnative.auth_ucans'
+// const UCANS_STORAGE_KEY = 'webnative.auth_ucans'
 
 console.log('wn', wn)
 
-wn.did.ucan()
-    .then(ourDID => {
-        console.log('our did again', ourDID)
-        var pk = wn.did.didToPublicKey(ourDID)
-        console.log('pk again', pk)
-    })
+// this returns the same value because the DID is a global variable
+// wn.did.ucan()
+//     .then(ourDID => {
+//         console.log('our did again', ourDID)
+//         var pk = wn.did.didToPublicKey(ourDID)
+//         console.log('pk again', pk)
+//     })
 
 // DIDs
-// const ourDID = await wn.did.ucan()
 wn.did.ucan()
     .then(ourDID => {
+        // the public key used in the DID is saved in storage. This means
+        // that `wn.did.ucan()` will return the same DID no whenever you
+        // call it. (The DID is a global value). This is true if you call
+        // it in new windows or even 'incognito' windows too.
+
+        // note that the related private key is not exposed in any way.
+        // It can't be stolen b/c it is not readable by the webCrypto API
         console.log('our did', ourDID)
 
         var pk = wn.did.didToPublicKey(ourDID)
         console.log('pk', pk)
-        // console.log('keystore', wn.keystore)
 
         wn.keystore.create()
             .then(async ks => {
                 // console.log('ks', ks)
 
                 const writeKey1 = await ks.publicWriteKey()
-                console.log('equal?', pk.publicKey === writeKey1)
+                console.log('is equal?', pk.publicKey === writeKey1)
 
                 var sig = await ks.sign('my message')
                 // console.log('the signature', sig)
 
                 var isValid = await ks.verify('my message', sig, writeKey1)
-                console.log('is valid?', isValid)
+                console.log('is valid signature?', isValid)
             })
 
 
@@ -44,9 +49,9 @@ wn.did.ucan()
          */
         const possibleProof = null // or, other UCAN.
 
+        // how to get a new DID for testing? The scope of the DID is so global
+        // i'm not sure how to make a new one
         const otherDID = "did:key:EXAMPLE"
-        // const otherDID = await wn.did.ucan()
-        console.log('other', otherDID)
 
 
         // https://webnative.fission.app/modules/ucan.html#sign
@@ -68,7 +73,7 @@ wn.did.ucan()
                 console.log('**got ucan**', ucan)
 
                 wn.ucan.isValid(ucan)
-                    .then(val => console.log('**is valid**', val))
+                    .then(val => console.log('**is valid ucan**', val))
 
                 // var enc = wn.ucan.encode(ucan)
                 // console.log('enc', enc)
@@ -81,8 +86,8 @@ wn.did.ucan()
                 // }
 
                 wn.ucan.sign(ucan.header, ucan.payload)
-                    .then((res) => {
-                        console.log('**sign**', res)
+                    .then((sig) => {
+                        console.log('**sign**', sig)
                     })
             })
     })

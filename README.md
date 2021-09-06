@@ -1,5 +1,59 @@
 # fission did
 
+--------------------------------------------
+
+## make a UCAN
+'User Controlled Authorization Networks'
+
+We are using the pre-built JS file from fission:
+
+```html
+<script src="https://unpkg.com/webnative@0.26.1/dist/index.umd.min.js"></script>
+```
+
+In our application code, we want to create a UCAN token:
+```js
+const wn = window.webnative
+
+wn.did.ucan()
+    .then(ourDID => {
+    })
+```
+
+This UCAN/DID is your identity. It is created with the webCrypto API, which
+means that the public key is visible to us, but we have to way to access the 
+related private key. You can sign and verify messages by using an API.
+
+## sign messages with the DID
+To sign or verify messages, you can use the keystore API. This uses the same
+key pair that was created for the UCAN above. It is the same keypair used
+in your DID.
+
+```js
+wn.keystore.create()
+    .then(async ks => {
+        // this is the same public key that is used in your DID
+        const writeKey = await ks.publicWriteKey()
+
+        var sig = await ks.sign('my message')
+
+        // ks.verify requires a public key and a signature to tell if
+        // a given signature is valid for a given message
+        var isValid = await ks.verify('my message', sig, writeKey)
+        console.log('is valid signature?', isValid)
+    })
+```
+
+At this point you have an identity (a public/private key pair), and you
+can use your ID to sign messages. That's everything you need to create
+a signed merkle list, for example.
+
+
+
+-------------------------------------------------------
+
+## vvvvv some notes vvv
+
 What is UCAN?
 
 'User Controlled Authorization Networks'
@@ -85,3 +139,4 @@ SyntaxError: /Users/nick/code/fission-did/node_modules/webnative/lib/index.js: E
 But we already are using `@babel/plugin-proposal-export-namespace-from`
 
 
+----------------------------------------------------------
