@@ -44,6 +44,8 @@ wn.keystore.create()
     })
 ```
 
+--------------------------------
+
 At this point you have an identity (a public/private key pair), and you
 can use your ID to sign messages. That's everything you need to create
 a signed merkle list, for example.
@@ -51,6 +53,8 @@ a signed merkle list, for example.
 
 
 -------------------------------------------------------
+
+
 
 ## vvvvv some notes vvv
 
