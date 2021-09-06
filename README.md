@@ -21,7 +21,7 @@ wn.did.ucan()
 ```
 
 This UCAN/DID is your identity. It is created with the webCrypto API, which
-means that the public key is visible to us, but we have to way to access the 
+means that the public key is visible to us, but we have no way to access the 
 related private key. You can sign and verify messages by using an API.
 
 The DID is an easy to serialize string so it can be moved easily to 
