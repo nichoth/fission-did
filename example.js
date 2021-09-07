@@ -67,17 +67,24 @@ function Demonstration () {
         <div class="people">
             <div class="alice">
                 <h2>alice</h2>
-                <pre>${JSON.stringify(wn.did.publicKeyToDid(state.alicePK.n, "rsa"))}</pre>
+                <pre>
+                    ${JSON.stringify(
+                        wn.did.publicKeyToDid(state.alicePK.n, "rsa"))}
+                </pre>
             </div>
+
             <div class="me">
                 <h2>me</h2>
                 <pre>${JSON.stringify(state.me)}</pre>
             </div>
-            <div class="bob">
+
+            <!-- <div class="bob">
                 <h2>bob</h2>
-                <!-- <pre>${JSON.stringify(state.bobPK)}</pre> -->
-                <pre>${JSON.stringify(wn.did.publicKeyToDid(state.bobPK.n, "rsa"))}</pre>
-            </div>
+                <pre>
+                    ${JSON.stringify(
+                        wn.did.publicKeyToDid(state.bobPK.n, "rsa"))}
+                </pre>
+            </div> -->
         </div>
     </div>`
 

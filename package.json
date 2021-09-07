@@ -5,12 +5,15 @@
   "main": "example.js",
   "scripts": {
     "roll": "rollup --config",
-    "serve": "ecstatic public",
-    "start": "budo example.js:bundle.js --dir=public/ --live --pushstate --open -- -p esmify -dv",
+    "build-sass": "sass style.scss public/style.css",
+    "watch-sass": "sass --watch style.scss public/style.css",
+    "start": "npm run build-sass && concurrently --kill-others \"npm run serve\" \"npm run watch-sass\"",
+    "serve": "budo example.js:bundle.js --dir=public/ --live --pushstate --open -- -p esmify -dv",
     "build-js-br": "browserify -p esmify -t [ babelify --global --presets [ @babel/preset-env ] --plugins [ @babel/plugin-proposal-export-namespace-from ] ] --debug example.js > public/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "concurrently": "^6.2.1",
     "htm": "^3.1.0",
     "preact": "^10.5.14",
     "webnative": "^0.27.0",
@@ -26,7 +29,8 @@
     "budo": "^11.6.4",
     "ecstatic": "^4.1.4",
     "esmify": "^2.1.1",
-    "rollup": "^2.56.3"
+    "rollup": "^2.56.3",
+    "sass": "^1.39.0"
   },
   "repository": {
     "type": "git",
