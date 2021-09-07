@@ -13,52 +13,71 @@ console.log('wn', wn)
 var subtle = crypto.subtle
 
 function Demonstration () {
-    var [state, setState] = useState({ DIDOne: null, DIDTwo: null })
+    var [state, setState] = useState({
+        alice: null,
+        me: null,
+        bob: null
+    })
 
-    // console.log('**state**', state)
-
-    if (!state.DIDOne) {
+    if (!state.alice) {
         subtle.generateKey({
             name: "RSASSA-PKCS1-v1_5",
             modulusLength: 2048,
-            publicExponent: new Uint8Array([ 0x01, 0x00, 0x01 ]),
+            publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
             hash: "SHA-256"
-        }, false, ['sign', 'verify'])
-            .then(keyPair => {
-                setState(xtend(state, { DIDOne: keyPair }))
+        }, false, ["sign", "verify"])
+            .then(async alice => {
+                const alicePK = await subtle.exportKey("jwk", alice.publicKey)
+                // console.log('alice pk', alicePK.n)
+                setState(xtend(state, { alice: alice, alicePK: alicePK }))
             })
 
         return null
     }
 
-    if (!state.DIDTwo) {
+    if (!state.me) {
         wn.did.ucan().then(did => {
-            setState(xtend(state, { DIDTwo: did }))
+            setState(xtend(state, { me: did }))
         })
 
         return null
     }
 
-    // console.log('did one', state.DIDOne.publicKey)
+    if (!state.bob) {
+        subtle.generateKey({
+            name: "RSASSA-PKCS1-v1_5",
+            modulusLength: 2048,
+            publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+            hash: "SHA-256"
+        }, false, ["sign", "verify"])
+            .then(async bob => {
+                const bobPK = await subtle.exportKey("jwk", bob.publicKey)
+                // console.log('bob pk', bobPK.n)
+                setState(xtend(state, { bob: bob, bobPK: bobPK }))
+            })
 
-    subtle.exportKey('spki', state.DIDOne.publicKey)
-        .then(k => {
-            const b = String.fromCharCode.apply(null, new Uint8Array(k))
-            const c = window.btoa(b)
-            console.log('public key from crypto.subtle', c)
-            console.log('public key to did', wn.did.publicKeyToDid(c, 'rsa'))
-        })
+        return null
+    }
+
+    console.log('**state**', state)
 
     return html`<div class="the-ui">
         <ul class="msgs1"></ul>
         <ul class="msgs2"></ul>
-        <div class="id1">
-            <h2>id one</h2>
-            <pre>${JSON.stringify(state.DIDOne)}</pre>
-        </div>
-        <div class="id2">
-            <h2>id two</h2>
-            <pre>${JSON.stringify(state.DIDTwo)}</pre>
+        <div class="people">
+            <div class="alice">
+                <h2>alice</h2>
+                <pre>${JSON.stringify(wn.did.publicKeyToDid(state.alicePK.n, "rsa"))}</pre>
+            </div>
+            <div class="me">
+                <h2>me</h2>
+                <pre>${JSON.stringify(state.me)}</pre>
+            </div>
+            <div class="bob">
+                <h2>bob</h2>
+                <!-- <pre>${JSON.stringify(state.bobPK)}</pre> -->
+                <pre>${JSON.stringify(wn.did.publicKeyToDid(state.bobPK.n, "rsa"))}</pre>
+            </div>
         </div>
     </div>`
 
@@ -89,29 +108,6 @@ wn.did.ucan()
 
         var pk = wn.did.didToPublicKey(ourDID)
         console.log('pk', pk)
-
-
-
-        // var storeB = wn.keystore.create({ storeName: 'b' })
-        // // console.log('sb', storeB)
-        // const storeA = wn.keystore.create({ storeName: 'a' })
-
-        // await wn.keystore.set(storeB)
-        // const issB = await wn.did.ucan()
-        // console.log('b', issB)
-
-        // await wn.keystore.set(storeA)
-        // const issA = await wn.did.ucan()
-        // console.log('a', issA)
-
-        // const prf = await wn.ucan.build({
-        //     audience: issB,
-        //     issuer: issA
-        // })
-
-        // console.log('prf', prf)
-
-
 
 
         wn.keystore.create()
