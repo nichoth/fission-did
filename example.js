@@ -10,15 +10,14 @@ const wn = window.webnative
 
 console.log('wn', wn)
 
-console.log('**crypt**', crypto.subtle)
 var subtle = crypto.subtle
 
 function Demonstration () {
-    var [state, setState] = useState({ idOne: null, idTwo: null })
+    var [state, setState] = useState({ DIDOne: null, DIDTwo: null })
 
-    console.log('**state**', state)
+    // console.log('**state**', state)
 
-    if (!state.idOne) {
+    if (!state.DIDOne) {
         subtle.generateKey({
             name: "RSASSA-PKCS1-v1_5",
             modulusLength: 2048,
@@ -26,24 +25,40 @@ function Demonstration () {
             hash: "SHA-256"
         }, false, ['sign', 'verify'])
             .then(keyPair => {
-                setState(xtend(state, { idOne: keyPair }))
+                setState(xtend(state, { DIDOne: keyPair }))
             })
+
+        return null
     }
 
-    if (!state.idTwo) {
-        wn.did.ucan().then(did => setState(xtend(state, { idTwo: did })))
+    if (!state.DIDTwo) {
+        wn.did.ucan().then(did => {
+            setState(xtend(state, { DIDTwo: did }))
+        })
+
+        return null
     }
 
+    // console.log('did one', state.DIDOne.publicKey)
+
+    subtle.exportKey('spki', state.DIDOne.publicKey)
+        .then(k => {
+            const b = String.fromCharCode.apply(null, new Uint8Array(k))
+            const c = window.btoa(b)
+            console.log('public key from crypto.subtle', c)
+            console.log('public key to did', wn.did.publicKeyToDid(c, 'rsa'))
+        })
 
     return html`<div class="the-ui">
         <ul class="msgs1"></ul>
         <ul class="msgs2"></ul>
         <div class="id1">
             <h2>id one</h2>
-            <pre>${JSON.stringify(state.id)}</pre>
+            <pre>${JSON.stringify(state.DIDOne)}</pre>
         </div>
         <div class="id2">
             <h2>id two</h2>
+            <pre>${JSON.stringify(state.DIDTwo)}</pre>
         </div>
     </div>`
 
