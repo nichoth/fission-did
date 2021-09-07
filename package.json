@@ -11,7 +11,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "webnative": "^0.27.0"
+    "htm": "^3.1.0",
+    "preact": "^10.5.14",
+    "webnative": "^0.27.0",
+    "xtend": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
