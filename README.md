@@ -13,6 +13,8 @@ The DID here is stored by the webCyrpto API automatically. (It will return the s
 Create a DID from a public key:
 ```js
 publicKeyToDid(publicKey: string, type: KeyType): string
+
+wn.did.publicKeyToDid(state.alicePK.n, "rsa"))}
 ```
 
 ```js
