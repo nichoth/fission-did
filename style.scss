@@ -1,0 +1,27 @@
+.people {
+    display: grid;
+    padding: 0;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    // grid-auto-rows: 50vh;
+    
+    > div {
+        border: 1px solid black;
+        padding: 1rem;
+
+        textarea {
+            width: 100%;
+            min-height: 4rem;
+        }
+
+        label {
+            display: block;
+        }
+    }
+
+    pre {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}

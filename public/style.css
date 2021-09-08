@@ -1,0 +1,24 @@
+.people {
+  display: grid;
+  padding: 0;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+}
+.people > div {
+  border: 1px solid black;
+  padding: 1rem;
+}
+.people > div textarea {
+  width: 100%;
+  min-height: 4rem;
+}
+.people > div label {
+  display: block;
+}
+.people pre {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/*# sourceMappingURL=style.css.map */
