@@ -116,7 +116,7 @@ $ npm test
 
   public key to DID
 
-    ✔ should create a public key
+    ✔ should create a did from a public key
     ✔ should create the right did
 
 
