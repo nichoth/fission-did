@@ -9,6 +9,7 @@
     "watch-sass": "sass --watch style.scss public/style.css",
     "start": "npm run build-sass && concurrently --kill-others \"npm run serve\" \"npm run watch-sass\"",
     "serve": "budo example.js:bundle.js --dir=public/ --live --pushstate --open -- -p esmify -dv",
+    "build": "tsc src/index",
     "build-js-br": "browserify -p esmify -t [ babelify --global --presets [ @babel/preset-env ] --plugins [ @babel/plugin-proposal-export-namespace-from ] ] --debug example.js > public/bundle.js",
     "test": "ts-node node_modules/tape/bin/tape test/index.ts | tap-spec"
   },
