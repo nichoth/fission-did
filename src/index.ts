@@ -1,5 +1,5 @@
 import * as utils from "keystore-idb/utils.js"
-import { BASE58_DID_PREFIX, magicBytes } from "./util.js"
+import { BASE58_DID_PREFIX, magicBytes } from "./util"
 import { KeyType } from "./types"
 import * as uint8arrays from "uint8arrays"
 

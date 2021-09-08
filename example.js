@@ -28,7 +28,7 @@ function Demonstration () {
         }, false, ["sign", "verify"])
             .then(async alice => {
                 const alicePK = await subtle.exportKey("jwk", alice.publicKey)
-                // console.log('alice pk', alicePK.n)
+                console.log('alice pk', alicePK.n)
                 setState(xtend(state, { alice: alice, alicePK: alicePK }))
             })
 
