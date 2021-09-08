@@ -2,19 +2,55 @@
 
 --------------------------------------------
 
-**how do you create/store DIDs for users?** Maybe a metamask-like extension for key mgmt. 
-```js
-const wn = window.webnative
-wn.did.ucan()
-    .then(async ourDID => {
-    })
-```
+**how do you create/store DIDs for users?** Maybe a metamask-like extension for key mgmt.
+
+> The idea is to avoid needing an external wallet
 
 https://whitepaper.fission.codes/authorization/did-doc
 
-The DID here is stored by the webCyrpto API automatically. (It will return the same value in any window that calls it). Even more than you might want them to be -- the keys are the same between 'incognito' windows and regular windows.
+The DID here is stored by the webCyrpto API automatically. (It will return the same value in any window that calls it). Even more than you might want it to -- the keys are the same in 'incognito' windows and regular windows.
+
+Create a DID from a public key:
+```js
+publicKeyToDid(publicKey: string, type: KeyType): string
+```
+
+```js
+const wn = window.webnative
+var ourDID = await wn.did.ucan()
+
+/**
+* This can be another UCAN which has a bigger, or equal,
+* set of permissions than the UCAN we're building.
+*/
+const possibleProof = null // or, other UCAN.
+
+// how to get a new DID for testing? The scope of the DID is so global
+// i'm not sure how to make a new one
+const otherDID = "did:key:EXAMPLE"
+
+/**
+* The UCAN, encoded as a string.
+*/
+wn.ucan.build({
+    // audience should be a DID
+    // (audience is a publicKey)
+    audience: otherDID,
+    issuer: ourDID,
+    // facts: [],
+    lifetimeInSeconds: 60 * 60 * 24, // UCAN expires in 24 hours
+    potency: 'APPEND_ONLY',
+    proof: possibleProof
+})
+```
+
 
 So what about temporary browsers? The use case where you are in a public library and you want to login with a computer that you do not own.
+
+> it's so unlikely that you won't have your phone with you that we've put that out of scope for now. You'd link from your phone to the library computer, and log out (delete the local WebCrypto key & wipe indexedDB) afterwards
+
+
+----------------------------------------------
 
 
 **How do you associate it with a username?** Any number of ways to do this. 
@@ -23,13 +59,25 @@ The public key can be a key in a DB for a user record, because it is universally
 
 ```js
 var pk = wn.did.didToPublicKey(ourDID)
+// =>
+// {
+//    "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqT8Zp028N0MQxNVs77P/4cgIjGZdrZSn5hd1lkvFpxooSKDgTeBRoC6nVyyJW6aPJUqkXSJhXWN6V1ftFwPhzL+6aOP/8yRatZ9rmDC8GRv08PD+uvQEInEuJ0/TpI6pKB+qwW+JgdyErk8MRDBJ/JQ58XI/wnzFpgVsEti8Ql8t2XK6ol+CBoZIFHTIM8avbGu7hJX0uHNA8dEfk/fQhM2k3VnnHtS2/cgM6EVO7pp6nDkxW7JqU5LpiPj27uPm/UPOhF4jv9QnYmHUC/P8jF7E0FuFtRfENM09i8eGVl7nZwzB0KToQ1DWtwpZEK6LNc1xMCMvv9mLoSYiEFr6XQIDAQAB",
+//    "type": "rsa"
+// }
 ```
 
 
 **How do you set the permissions in a UCAN appropriately for different sessions?**
 
+Use [wn.ucan.build](https://webnative.fission.app/modules/ucan.html#build) to
+create a new UCAN that can be used just for a session. Add the originating
+UCAN as the `proof` field in the call to `wn.ucan.build`. This can be another
+UCAN which has a bigger, or equal, set of permissions than the UCAN we're
+building.
 
 
+You can set an expiration for a UCAN also --
+`wn.ucan.build({ expiration: timestamp })`
 
 
 
@@ -40,6 +88,9 @@ var pk = wn.did.didToPublicKey(ourDID)
 
 
 -----------------------------------------------
+
+
+
 
 ## make a UCAN
 'User Controlled Authorization Networks'

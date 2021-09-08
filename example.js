@@ -212,8 +212,8 @@ wn.did.ucan()
          */
         const possibleProof = null // or, other UCAN.
 
-        // how to get a new DID for testing? The scope of the DID is so global
-        // i'm not sure how to make a new one
+        // how to get a new DID for testing?
+        // The scope of the DID is so global i'm not sure how to make a new one
         const otherDID = "did:key:EXAMPLE"
 
 
@@ -235,6 +235,8 @@ wn.did.ucan()
         })
             .then((ucan) => {
                 console.log('**got ucan**', ucan)
+
+                console.log('iss', ucan.payload.iss === ourDID)
 
                 wn.ucan.isValid(ucan)
                     .then(val => console.log('**is valid ucan**', val))
