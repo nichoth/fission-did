@@ -109,6 +109,8 @@ When we do device linking, we bootstrap a secure authenticated session over WebS
 ## pubicKeyToDID
 Create a DID from a given public key
 
+This is a typescript file
+
 ```
 $ npm test
 ```
