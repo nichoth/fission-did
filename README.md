@@ -113,6 +113,16 @@ This is a typescript file
 
 ```
 $ npm test
+
+  public key to DID
+
+    ✔ should create a public key
+    ✔ should create the right did
+
+
+  total:     2
+  passing:   2
+  duration:  4.4s
 ```
 
 ```ts
