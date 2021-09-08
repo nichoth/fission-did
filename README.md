@@ -2,6 +2,45 @@
 
 --------------------------------------------
 
+**how do you create/store DIDs for users?** Maybe a metamask-like extension for key mgmt. 
+```js
+const wn = window.webnative
+wn.did.ucan()
+    .then(async ourDID => {
+    })
+```
+
+https://whitepaper.fission.codes/authorization/did-doc
+
+The DID here is stored by the webCyrpto API automatically. (It will return the same value in any window that calls it). Even more than you might want them to be -- the keys are the same between 'incognito' windows and regular windows.
+
+So what about temporary browsers? The use case where you are in a public library and you want to login with a computer that you do not own.
+
+
+**How do you associate it with a username?** Any number of ways to do this. 
+
+The public key can be a key in a DB for a user record, because it is universally unique.
+
+```js
+var pk = wn.did.didToPublicKey(ourDID)
+```
+
+
+**How do you set the permissions in a UCAN appropriately for different sessions?**
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------
+
 ## make a UCAN
 'User Controlled Authorization Networks'
 
