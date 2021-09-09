@@ -78,7 +78,7 @@ UCAN which has a bigger, or equal, set of permissions than the UCAN we're
 building.
 
 
-You can set an expiration for a UCAN also. This is an absolute timestamp. --
+You can set an expiration for a UCAN also. This is an absolute timestamp --
 `wn.ucan.build({ expiration: timestamp })`
 
 Or set `lifetimeInSeconds: 60 * 60 * 24, // UCAN expires in 24 hours`, for a relative expiration.
