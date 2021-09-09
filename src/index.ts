@@ -3,7 +3,7 @@ import { BASE58_DID_PREFIX, magicBytes } from "./util"
 import { KeyType } from "./types"
 import * as uint8arrays from "uint8arrays"
 
-function strToArrBuf(str, charSize) {
+function strToArrBuf(str: string, charSize: number) {
     var view = charSize === 8 ?
         new Uint8Array(str.length) :
         new Uint16Array(str.length);
@@ -28,7 +28,6 @@ var utils = {
         return strToArrBuf(str, 8);
     }
 }
-
 
 export function publicKeyToDid(publicKey: string, type: KeyType): string {
     const pubKeyBuf = utils.base64ToArrBuf(publicKey)

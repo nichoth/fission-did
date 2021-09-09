@@ -1,11 +1,19 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "dist"
+    "outDir": "dist",
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true
   },
   "include": [
     "src",
     "tests/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }

@@ -182,4 +182,5 @@ node_modules
 bundle.js
 public/bundle.js.map
 src/*.js
+dist/*
 
