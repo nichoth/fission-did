@@ -81,6 +81,9 @@ building.
 You can set an expiration for a UCAN also --
 `wn.ucan.build({ expiration: timestamp })`
 
+This is an absolute timestamp.
+
+Or set `lifetimeInSeconds: 60 * 60 * 24, // UCAN expires in 24 hours`, for a relative expiration.
 
 
 -----------------------------------------------
