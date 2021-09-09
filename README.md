@@ -2,6 +2,9 @@
 
 --------------------------------------------
 
+DID is *who you are*. UCAN is *what you can do*.
+
+
 **how do you create/store DIDs for users?** Maybe a metamask-like extension for key mgmt.
 
 > The idea is to avoid needing an external wallet
@@ -80,7 +83,6 @@ UCAN as the `proof` field in the call to `wn.ucan.build`. This can be another
 UCAN which has a bigger, or equal, set of permissions than the UCAN we're
 building.
 
-
 You can set an expiration for a UCAN also. This is an absolute timestamp --
 `wn.ucan.build({ expiration: timestamp })`
 
@@ -89,6 +91,16 @@ Or set `lifetimeInSeconds: 60 * 60 * 24, // UCAN expires in 24 hours`, for a rel
 
 -----------------------------------------------
 
+
+## permissions
+
+https://fission.codes/blog/auth-without-backend/
+
+> What if you want to grant another user or service the ability to perform some action on your behalf? As long as they have a valid UCAN, they can wrap it in another with equal or lesser rights and include the original in the prf field.
+
+'equal or lesser rights' in this context means that your application would need to read both UCANs, and would interpret the 'potency' field and see if a things are allowed according to your own application logic.
+
+----------------------------------------------------------------
 
 ## facts
 
@@ -108,6 +120,7 @@ What is a session key?
 
 
 ---------------------------------------------------
+
 
 
 ## pubicKeyToDID

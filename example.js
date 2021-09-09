@@ -253,7 +253,7 @@ wn.did.ucan()
 
                 wn.ucan.sign(ucan.header, ucan.payload)
                     .then((sig) => {
-                        console.log('**sign**', !!sig)
+                        console.log('**sig**', sig)
                     })
             })
     })
