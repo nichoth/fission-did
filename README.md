@@ -94,14 +94,14 @@ Or set `lifetimeInSeconds: 60 * 60 * 24, // UCAN expires in 24 hours`, for a rel
 
 https://webnative.fission.app/modules/ucan.html#build
 
-The facts field gives a UCAN the ability to embed arbitrary data. The only purpose of this data is to be signed with the UCAN chain. This does the authentication of "a user that can do X, Y, and Z is signing this data". You can use it for really any signing purpose, including signing challenge text, hash preimages, associating URLs, and so on
+> The facts field gives a UCAN the ability to embed arbitrary data. The only purpose of this data is to be signed with the UCAN chain. This does the authentication of "a user that can do X, Y, and Z is signing this data". You can use it for really any signing purpose, including signing challenge text, hash preimages, associating URLs, and so on
 
 
 In the tests it says 'session key fact' -- https://github.com/fission-suite/webnative/blob/ce2b50fb70a31db1081d8f1655f02b251164c826/tests/ucan/ucan.browser.test.ts#L64
 
 What is a session key?
 
-When we do device linking, we bootstrap a secure authenticated session over WebSockets. The session key is the symmetric key that gets negotiated in the handshake, and we need to authenticate the source of that key. We include it in the facts section of a UCAN (which delegates no permissions) to prove that you have the capabilities of that the linking device wants, and that the symmetric key originated with you. This is all happening inside messages encrypted with that key. Here's the full protocol if you're interested: https://whitepaper.fission.codes/accounts/login/awake
+> When we do device linking, we bootstrap a secure authenticated session over WebSockets. The session key is the symmetric key that gets negotiated in the handshake, and we need to authenticate the source of that key. We include it in the facts section of a UCAN (which delegates no permissions) to prove that you have the capabilities of that the linking device wants, and that the symmetric key originated with you. This is all happening inside messages encrypted with that key. Here's the full protocol if you're interested: https://whitepaper.fission.codes/accounts/login/awake
 
 
 
