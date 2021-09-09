@@ -69,6 +69,9 @@ var pk = wn.did.didToPublicKey(ourDID)
 ```
 
 
+-------------------------------------------
+
+
 **How do you set the permissions in a UCAN appropriately for different sessions?**
 
 Use [wn.ucan.build](https://webnative.fission.app/modules/ucan.html#build) to
