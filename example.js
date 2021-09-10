@@ -210,12 +210,18 @@ wn.did.ucan()
          * This can be another UCAN which has a bigger, or equal,
          * set of permissions than the UCAN we're building.
          */
-        const possibleProof = null // or, other UCAN.
+        // const possibleProof = null // or, other UCAN.
 
         // how to get a new DID for testing?
         // The scope of the DID is so global i'm not sure how to make a new one
         const otherDID = "did:key:EXAMPLE"
 
+        const possibleProof = wn.ucan.encode(await wn.ucan.build({
+            audience: ourDID,
+            issuer: ourDID,
+            potency: 'fooo',
+            proof: null
+        }))
 
         // https://webnative.fission.app/modules/ucan.html#sign
 
@@ -235,6 +241,9 @@ wn.did.ucan()
         })
             .then((ucan) => {
                 console.log('**got ucan**', ucan)
+
+                console.log('**got possible proof**', wn.ucan.decode(
+                    ucan.payload.prf))
 
                 console.log('iss', ucan.payload.iss === ourDID)
 
