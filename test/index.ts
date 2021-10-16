@@ -9,6 +9,5 @@ tape('public key to DID', function (t: tape.Test) {
     t.ok(did, 'should create a did from a public key')
     t.equal(did, 'did:key:z14ocYEZPM1ghUVA9SvBRLc2YLnA44wy1k3ExUVwkNSKFSG3FLCf9Fu3fNEZNRdp721h17sxkBagDLUv9u3nbsHhv69mha1zMd857HM5bDh1VdrhDQ1tGmRx7xhCg7pWY1FUQcVWg424emLKVtYt54PGBSvGzcunG4QnWUKcVhgnCD8fUGyc3pZYh4BhCTYJnkAXvikDmQafioqBymXWZ24GnMaWQaCb1o88XBNDrEt1yu6Jh7Qvo5TKJn42VYBEbWMGnumqGHMA9G89yR43sifPsmbtfV1517biu29N7Hskta4WshQ78XEaRMkAcQsV8MVmD9aXHzZfA9nrCMzeJHmYUHP6exfGUXn',
         'should create the right did')
-    // console.log('did', did)
     t.end()
 })

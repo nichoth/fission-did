@@ -182,7 +182,6 @@ wn.did.ucan()
 
         // note that the related private key is not exposed in any way.
         // It can't be stolen b/c it is not readable.
-        // console.log('our did', ourDID)
 
         console.log('our did', ourDID)
         var pk = wn.did.didToPublicKey(ourDID)
@@ -218,13 +217,18 @@ wn.did.ucan()
 
         const possibleProof = wn.ucan.encode(await wn.ucan.build({
             audience: ourDID,
-            issuer: ourDID,
+            issuer: null,
             potency: 'fooo',
             proof: null
         }))
 
         // https://webnative.fission.app/modules/ucan.html#sign
 
+        // in real life,
+        // need to check with the server if the potency you are creating is
+        // allowed to be created by the given possibleProof UCAN
+        // if it is allowed, call `ucan.build`
+        // otherwise, reject
 
         /**
          * The UCAN, encoded as a string.
@@ -237,6 +241,7 @@ wn.did.ucan()
             // facts: [],
             lifetimeInSeconds: 60 * 60 * 24, // UCAN expires in 24 hours
             potency: 'APPEND_ONLY',
+            // proof: 'foo'
             proof: possibleProof
         })
             .then((ucan) => {
@@ -251,7 +256,7 @@ wn.did.ucan()
                     .then(val => console.log('**is valid ucan**', val))
 
                 var enc = wn.ucan.encode(ucan)
-                console.log('enc', enc)
+                // console.log('enc', enc)
 
                 try {
                     var dec = wn.ucan.decode(enc)
@@ -264,5 +269,8 @@ wn.did.ucan()
                     .then((sig) => {
                         console.log('**sig**', sig)
                     })
+            })
+            .catch(err => {
+                console.log('!!!!errrr in here', err)
             })
     })
