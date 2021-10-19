@@ -23,7 +23,8 @@ sftp-config.json
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -114,7 +115,8 @@ sftp-config.json
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -183,4 +185,4 @@ bundle.js
 public/bundle.js.map
 src/*.js
 dist/*
-
+public/*.css
