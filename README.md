@@ -11,7 +11,7 @@ DID is *who you are*. UCAN is *what you can do*.
 
 https://whitepaper.fission.codes/authorization/did-doc
 
-The DID here is stored by the webCyrpto API automatically. (It will return the same value in any window that calls it). Even more than you might want it to -- the keys are the same in 'incognito' windows and regular windows.
+The DID here is stored by the webnative library. (It will return the same value in any window that calls it). Even more than you might want it to -- the keys are the same in 'incognito' windows and regular windows.
 
 Create a DID from a public key:
 ```js
