@@ -21,7 +21,7 @@
     "keystore-idb": "^0.15.0",
     "preact": "^10.5.14",
     "uint8arrays": "^3.0.0",
-    "webnative": "^0.27.0",
+    "webnative": "^0.36.3",
     "xtend": "^4.0.2"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "@types/tape": "^4.13.2",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
-    "budo": "^11.6.4",
+    "budo": "^11.8.4",
     "ecstatic": "^4.1.4",
     "esmify": "^2.1.1",
     "rollup": "^4.22.4",
